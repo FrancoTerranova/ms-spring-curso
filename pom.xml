@@ -58,11 +58,11 @@
 		</dependencies>
 	</dependencyManagement>
 	<repositories>
-<repository>
-<id>mavenCentral</id>
-<url>https://repo1.maven.org/maven2/</url>
-</repository>
-</repositories>
+		<repository>
+			<id>mavenCentral</id>
+			<url>https://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<!-- Gives us the ability to quickly setup and run services Property Defaults,Automatic 
 			Restart,Live Reload,Global Settings,Remote Applications for debug example 
@@ -91,11 +91,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-    <groupId>org.yaml</groupId>
-    <artifactId>snakeyaml</artifactId>
-    <version>1.30</version>
-</dependency>
+		
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -109,23 +106,39 @@
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
 			</plugin>
-		
+
 			<plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-			
-			
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
 			<!-- It is the spring-boot repackage goal that repackages the JAR produced 
 				by maven to specify the main class and make it executable using an embedded 
 				container -->
-		
-			<!-- <plugin> <groupId>com.spotify</groupId> <artifactId>dockerfile-maven-plugin</artifactId> 
-				<version>${dockerfile-maven-version}</version> <executions> <execution> <id>build-docker-image</id> 
-				<phase>package</phase> <goals> <goal>build</goal> <goal>push</goal> </goals> 
-				</execution> </executions> <configuration> <repository>digitalthinking/microservice-docker-${project.artifactId}</repository> 
-				<tag>${project.version}</tag> <buildArgs> <JAR_FILE>${project.build.finalName}.jar</JAR_FILE> 
-				</buildArgs> </configuration> </plugin> -->
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>${dockerfile-maven-version}</version>
+				<executions>
+					<execution>
+						<id>build-docker-image</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>digitalthinking/microservice-docker-${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
@@ -141,7 +154,7 @@
 				<configuration>
 				</configuration>
 			</plugin>
-				<plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot-maven-plugin.version}</version>
@@ -158,6 +171,6 @@
 	<modules>
 		<module>bussiness</module>
 		<module>infrastructure</module>
-	
+
 	</modules>
 </project>

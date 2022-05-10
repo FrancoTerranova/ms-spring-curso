@@ -5,7 +5,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,9 +40,12 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 
-
+	@Value("${user.role}")
+	private String role;
+	
 	@GetMapping
 	public List<Product> get() {
+		System.out.print(role);
 		return productRepository.findAll();
 	}
 

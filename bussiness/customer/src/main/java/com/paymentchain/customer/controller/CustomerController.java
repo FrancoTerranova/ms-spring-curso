@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -49,6 +50,8 @@ public class CustomerController {
 	@Autowired
 	CustomerRepository customerRepository;
 
+	@Value("${user.role}")
+	String role;
 	private final WebClient.Builder webClientBuilder;
 
 	public CustomerController(WebClient.Builder webClientBuilder) {
@@ -128,6 +131,11 @@ public class CustomerController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable String id) {
 		return null;
+	}
+
+	@GetMapping("/hello")
+	public String hello() {
+		return role;
 	}
 
 }
